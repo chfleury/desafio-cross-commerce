@@ -1,9 +1,21 @@
 const express = require('express');
-const cors = require('cors');
+const routes = require('./routes');
 
-const app = express();
+class App {
+  constructor() {
+    this.server = express();
 
-app.use(cors());
-app.use(express.json());
+    this.middlewares();
+    this.routes();
+  }
 
-module.exports = app;
+  middlewares() {
+    this.server.use(express.json());
+  }
+
+  routes() {
+    this.server.use(routes);
+  }
+}
+
+module.exports = new App();
