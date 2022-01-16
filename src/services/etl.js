@@ -1,4 +1,5 @@
 const axios = require('axios');
+const { mergeSort } = require('../functions/mergeSort');
 
 class Etl {
   constructor() {
@@ -47,7 +48,7 @@ class Etl {
   }
 
   transform(data) {
-    return data;
+    return mergeSort(data);
   }
 
   load(data) {
