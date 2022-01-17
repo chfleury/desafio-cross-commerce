@@ -2,11 +2,17 @@ const etl = require('../services/etl');
 
 class RouteController {
   constructor() {
-    etl.extract();
+    etl.handleEtl();
   }
 
   async controllerFunction(req, res) {
-    res.json(etl.state);
+    const { page } = req.query;
+    const data = etl.state.data.slice((page - 1) * 100, page * 100);
+
+    res.json({
+      ...etl.state,
+      data,
+    });
   }
 }
 
