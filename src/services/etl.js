@@ -1,5 +1,6 @@
 const axios = require('axios');
-const { mergeSort } = require('../functions/mergeSort');
+const res = require('express/lib/response');
+const MergeSort = require('../algorithms/mergeSort');
 
 class Etl {
   constructor() {
@@ -10,49 +11,61 @@ class Etl {
     };
   }
 
+  async handleEtl() {
+    let data = await this.extract();
+
+    this.transform(data);
+
+    this.load(data);
+  }
+
   async extract() {
     let _this = this;
     let page = 1;
     let pagesSucessfulyExtracted = 0;
     const url = 'http://challenge.dienekes.com.br/api/numbers';
-    let data = [];
 
-    while (true) {
+    let data = [];
+    let done = false;
+    while (!done) {
       await axios
         .get(url + `?page=${page}`)
         .then(function (response) {
-          if (response.data.numbers.lenght === 0) {
-            return data;
+          if (response.data.numbers.length == 0) {
+            done = true;
+          } else {
+            pagesSucessfulyExtracted += 1;
+
+            data = [...data, ...response.data.numbers];
+
+            _this.state = {
+              isExtractionComplete: false,
+              pagesIterated: page,
+              pagesSucessfulyExtracted,
+              data: [],
+            };
+
+            console.log(_this.state);
           }
-
-          pagesSucessfulyExtracted += 1;
-
-          data = [...data, ...response.data.numbers];
-
-          _this.state = {
-            isExtractionComplete: false,
-            pagesIterated: page,
-            pagesSucessfulyExtracted,
-            data: [],
-          };
-
-          console.log(_this.state);
         })
         .catch(function (error) {
-          console.log(error);
+          console.log('error');
         })
         .then(function () {
           page += 1;
         });
     }
+
+    return data;
   }
 
   transform(data) {
-    return mergeSort(data);
+    MergeSort.sort(data);
   }
 
   load(data) {
-    this.updateState();
+    this.state.isExtractionComplete = true;
+    this.state.data = data;
   }
 }
 
