@@ -31,6 +31,7 @@ class Etl {
     const url = 'http://challenge.dienekes.com.br/api/numbers';
     let done = false;
     let extractedData = [];
+    let retry = 0;
 
     while (!done) {
       await axios
@@ -47,16 +48,21 @@ class Etl {
             _this.state.pagesIterated = page;
             _this.state.pagesSucessfulyExtracted = pagesSucessfulyExtracted;
           }
-        })
 
-        // if the request fails
-        .catch(function (error) {
-          _this.state.pagesIterated = page;
-        })
-
-        // On success or error, iterates the page every time
-        .then(function () {
           page += 1;
+          retry = 0;
+        })
+
+        // if the request fails, it retries up to 5 times
+        .catch(function (error) {
+          if (retry > 5) {
+            page += 1;
+            retry = 0;
+          }
+
+          retry += 1;
+
+          _this.state.pagesIterated = page;
         });
     }
 
