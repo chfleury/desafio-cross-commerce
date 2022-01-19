@@ -20,6 +20,7 @@ Depois da instalação das dependências, basta rodar:
 
 ## Como acessar os números ordenados
 O resultado final da extração e orndenação dos números será exposto na rota ```/numbers```.<br />
+A porta exposta é a porta *3000* <br/>
 Poderá ser passado também o parametro page, assim como segue o exemplo: ```http://localhost:3000/numbers?page=7000```
 
 ## Como funciona a rota
