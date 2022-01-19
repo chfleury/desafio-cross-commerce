@@ -13,11 +13,15 @@ class Etl {
   }
 
   async handleEtl() {
-    let data = await this.extract();
+    try {
+      let data = await this.extract();
 
-    this.transform(data);
+      this.transform(data);
 
-    this.load(data);
+      this.load(data);
+    } catch (err) {
+      this.state = { error: err };
+    }
   }
 
   async extract() {
