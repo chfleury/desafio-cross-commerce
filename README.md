@@ -1,4 +1,4 @@
-# desafio-cross-commerce
+# Desafio Cross Commerce
 
 Olá! Essa é a minha solução para o desafio.
 Foi utilizado node v16.13.1 e npm 8.3.1
