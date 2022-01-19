@@ -12,4 +12,16 @@ describe('Etl', () => {
       data: createSortedTinyArray(),
     });
   });
+
+  test('should return error if a function inside throws', async () => {
+    jest.spyOn(mockedEtl, 'extract').mockImplementationOnce(() => {
+      throw new Error();
+    });
+
+    await mockedEtl.handleEtl();
+
+    expect(mockedEtl.state).toEqual({
+      error: new Error(),
+    });
+  });
 });
