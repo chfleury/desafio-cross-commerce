@@ -10,8 +10,6 @@ class Etl {
       pagesIterated: 0,
       data: [],
     };
-
-    this.handleEtl();
   }
 
   async handleEtl() {

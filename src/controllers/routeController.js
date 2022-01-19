@@ -1,6 +1,9 @@
 const etl = require('../services/etl');
 
 class RouteController {
+  constructor() {
+    etl.handleEtl();
+  }
   async controllerFunction(req, res) {
     let { page = 1 } = req.query;
 
