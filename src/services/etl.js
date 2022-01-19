@@ -6,9 +6,12 @@ class Etl {
   constructor() {
     this.state = {
       isExtractionComplete: false,
-      pagesExtracted: 0,
+      pagesSucessfulyExtracted: 0,
+      pagesIterated: 0,
       data: [],
     };
+
+    this.handleEtl();
   }
 
   async handleEtl() {
@@ -24,39 +27,40 @@ class Etl {
     let page = 1;
     let pagesSucessfulyExtracted = 0;
     const url = 'http://challenge.dienekes.com.br/api/numbers';
-
-    let data = [];
     let done = false;
+    let extractedData = [];
+
     while (!done) {
       await axios
         .get(url + `?page=${page}`)
+        // if the request succeeds
         .then(function (response) {
           if (response.data.numbers.length == 0) {
             done = true;
           } else {
             pagesSucessfulyExtracted += 1;
 
-            data = [...data, ...response.data.numbers];
+            extractedData = [...extractedData, ...response.data.numbers];
 
-            _this.state = {
-              isExtractionComplete: false,
-              pagesIterated: page,
-              pagesSucessfulyExtracted,
-              data: [],
-            };
-
+            _this.state.pagesIterated = page;
+            _this.state.pagesSucessfulyExtracted = pagesSucessfulyExtracted;
             console.log(_this.state);
           }
         })
+
+        // if the request fails
         .catch(function (error) {
-          console.log('error');
+          _this.state.pagesIterated = page;
+          console.error(error);
         })
+
+        // On success or error, iterates the page every time
         .then(function () {
           page += 1;
         });
     }
 
-    return data;
+    return extractedData;
   }
 
   transform(data) {
