@@ -51,4 +51,16 @@ Caso a extração e transformação tenham sido concluídas, será retornado tam
 }
 ```
 
+## Testes
+
+Para rodar os testes, basta rodar o comando ```npm run test``` <br/>
+Eles ficam localizados na pasta test, na raiz do projeto.
+
+## Algoritmo de ordenação
+
+O algoritmo de ordenação que escolhi for o mergesort, visto que é um algoritmo eficiente tanto para pequenos arrays quanto para arrays maiores, como é o caso do teste. <br/>
+Foi implementada uma versão iterativa do mergesort, pois com um array tão grante, poderia um stack overflow caso fosse usado recursividade.
+
+
+
  
