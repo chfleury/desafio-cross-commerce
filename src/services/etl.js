@@ -38,6 +38,7 @@ class Etl {
         // if the request succeeds
         .then(function (response) {
           if (response.data.numbers.length == 0) {
+            // if the content is empty array, it stops extracting the data
             done = true;
           } else {
             pagesSucessfulyExtracted += 1;
@@ -71,6 +72,7 @@ class Etl {
   }
 
   load(data) {
+    // updates the state with the new transformed data
     this.state.isExtractionComplete = true;
     this.state.data = data;
   }
