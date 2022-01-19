@@ -26,7 +26,9 @@ Poderá ser passado também o parametro page, assim como segue o exemplo: ```htt
 ## Como funciona a rota
 Ao rodar a aplicação, será feita uma extração de todos os números da api indicada no teste.<br />
 Como a quantidade de páginas é muito grande, irá demorar alguns minútos para terminar a extração, e, caso acesse a rota ```/numbers``` antes da extração e transformação serem concluídas, a rota não retornará os números, apenas informação de quantas páginas já foram extraídas com sucesso até o momento, e quantas páginas já foram iteradas no total:
-
+<br /><br />
+A rota sempre retornara o campo isExtractionComplete, dizendo se a extração já terminou ou ainda está em andamento.
+<br />
 ```
 {
   "isExtractionComplete": false,
@@ -37,7 +39,7 @@ Como a quantidade de páginas é muito grande, irá demorar alguns minútos para
 ```
 
 <br/>
-Caso a extração e transformação tenham sido concluídas, será retornado também um campo data, contendo os números ordenados (100 por página):
+Caso a extração e transformação tenham sido concluídas, será retornado também um campo data, contendo os números ordenados (100 por página):<br />
 
  
  ```
