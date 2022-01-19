@@ -4,6 +4,7 @@ class RouteController {
   constructor() {
     etl.handleEtl();
   }
+
   async showNumbers(req, res) {
     let { page = 1 } = req.query;
 
