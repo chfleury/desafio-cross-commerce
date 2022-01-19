@@ -24,7 +24,8 @@ A porta exposta é a porta ```3000``` <br/>.
 Poderá ser passado também o parametro page, assim como segue o exemplo: ```http://localhost:3000/numbers?page=7000```
 
 ## Como funciona a rota
-Ao rodar a aplicação, será feita uma extração de todos os números da api indicada no teste. Como a quantidade de páginas é muito grande, irá demorar alguns minútos para terminar a extração, e, caso acesse a rota ```/numbers``` antes da extração e transformação serem concluídas, a rota não retornará os números, apenas informação de quantas páginas já foram extraídas com sucesso até o momento, e quantas páginas já foram iteradas no total:
+Ao rodar a aplicação, será feita uma extração de todos os números da api indicada no teste.<br />
+Como a quantidade de páginas é muito grande, irá demorar alguns minútos para terminar a extração, e, caso acesse a rota ```/numbers``` antes da extração e transformação serem concluídas, a rota não retornará os números, apenas informação de quantas páginas já foram extraídas com sucesso até o momento, e quantas páginas já foram iteradas no total:
 
 ```
 {
