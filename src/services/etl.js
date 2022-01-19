@@ -43,9 +43,9 @@ class Etl {
             pagesSucessfulyExtracted += 1;
 
             extractedData = [...extractedData, ...response.data.numbers];
-
             _this.state.pagesIterated = page;
             _this.state.pagesSucessfulyExtracted = pagesSucessfulyExtracted;
+
             console.log(_this.state);
           }
         })
@@ -53,6 +53,7 @@ class Etl {
         // if the request fails
         .catch(function (error) {
           _this.state.pagesIterated = page;
+
           console.error(error);
         })
 
