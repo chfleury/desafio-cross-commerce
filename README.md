@@ -37,17 +37,18 @@ Ao rodar a aplicação, será feita uma extração de todos os números da api i
 
 <br/>
 Caso a extração e transformação tenham sido concluídas, será retornado também um campo data, contendo os números ordenados (100 por página):
+
+ 
  ```
- {
+{
   "isExtractionComplete": true,
   "pagesSucessfulyExtracted": 9893,
   "pagesIterated": 10000,
   "data": [
     0.7071230603055692,
     0.7071233555455995,
-    0.7071290735730147,
-    0.7071304283799542
-    ]
- }
- ```
+    0.7071290735730147]
+}
+```
+
  
