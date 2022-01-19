@@ -3,6 +3,6 @@ const RouteController = require('./controllers/routeController');
 
 const router = Router();
 
-router.get('/', RouteController.controllerFunction);
+router.get('/numbers', RouteController.showNumbers);
 
 module.exports = router;

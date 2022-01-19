@@ -4,7 +4,7 @@ class RouteController {
   constructor() {
     etl.handleEtl();
   }
-  async controllerFunction(req, res) {
+  async showNumbers(req, res) {
     let { page = 1 } = req.query;
 
     const data = etl.state.data.slice((page - 1) * 100, page * 100);
